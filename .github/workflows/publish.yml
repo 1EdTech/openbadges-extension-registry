@@ -31,7 +31,13 @@ jobs:
       - name: Create extension index for OB 3.0
         run: |
             jq -s 'reduce .[] as $item ({}; . * $item)' $(find ./v3 -type f -name "*.json") > build/obv3p0.json
-      - name: Publish to GH Pages
-        uses: w3c/spec-prod@v2
+      - name: Setup Github Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-            GH_PAGES_BRANCH: gh-pages
+            # Upload entire repository
+            path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
