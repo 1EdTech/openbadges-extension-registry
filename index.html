@@ -1,0 +1,569 @@
+<!DOCTYPE html><html lang="en" dir="ltr"><head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta name="generator" content="ReSpec 35.1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+<title>Open Badges Specification 2.0 
+    Final Release</title>
+    
+
+    
+<style id="respec-mainstyle">
+@keyframes pop{
+0%{transform:scale(1,1)}
+25%{transform:scale(1.25,1.25);opacity:.75}
+100%{transform:scale(1,1)}
+}
+a.internalDFN{color:inherit;border-bottom:1px solid #99c;text-decoration:none}
+a.externalDFN{color:inherit;border-bottom:1px dotted #ccc;text-decoration:none}
+a.bibref{text-decoration:none}
+.respec-offending-element:target{animation:pop .25s ease-in-out 0s 1}
+.respec-offending-element,a[href].respec-offending-element{text-decoration:red wavy underline}
+@supports not (text-decoration:red wavy underline){
+.respec-offending-element:not(pre){display:inline-block}
+.respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}
+}
+#references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}
+cite .bibref{font-style:normal}
+a[href].orcid{padding-left:4px;padding-right:4px}
+a[href].orcid>svg{margin-bottom:-2px}
+ol.tof,ul.tof{list-style:none outside none}
+.caption{margin-top:.5em;font-style:italic}
+#issue-summary>ul{column-count:2}
+#issue-summary li{list-style:none;display:inline-block}
+details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}
+details.respec-tests-details>*{padding-right:2em}
+details.respec-tests-details[open]{z-index:999999;position:absolute;border:thin solid #cad3e2;border-radius:.3em;background-color:#fff;padding-bottom:.5em}
+details.respec-tests-details[open]>summary{border-bottom:thin solid #cad3e2;padding-left:1em;margin-bottom:1em;line-height:2em}
+details.respec-tests-details>ul{width:100%;margin-top:-.3em}
+details.respec-tests-details>li{padding-left:1em}
+.self-link:hover{opacity:1;text-decoration:none;background-color:transparent}
+aside.example .marker>a.self-link{color:inherit}
+.header-wrapper{display:flex;align-items:baseline}
+:is(h2,h3,h4,h5,h6):not(#toc>h2,#abstract>h2,#sotd>h2,.head>h2){position:relative;left:-.5em}
+:is(h2,h3,h4,h5,h6):not(#toch2)+a.self-link{color:inherit;order:-1;position:relative;left:-1.1em;font-size:1rem;opacity:.5}
+:is(h2,h3,h4,h5,h6)+a.self-link::before{content:"§";text-decoration:none;color:var(--heading-text)}
+:is(h2,h3)+a.self-link{top:-.2em}
+:is(h4,h5,h6)+a.self-link::before{color:#000}
+@media (max-width:767px){
+dd{margin-left:0}
+}
+@media print{
+.removeOnSave{display:none}
+}
+</style>
+<style>
+dfn{cursor:pointer}
+.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:"Helvetica Neue",sans-serif;font-size:small;background:#fff;background:var(--indextable-hover-bg,#fff);color:#000;color:var(--text,#000);box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);box-shadow:0 1em 3em -.4em var(--tocsidebar-shadow,rgba(0,0,0,.3)),0 0 1px 1px var(--tocsidebar-shadow,rgba(0,0,0,.05));border-radius:2px}
+.dfn-panel:not(.docked)>.caret{position:absolute;top:-9px}
+.dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;border-bottom-color:var(--indextable-hover-bg,#fff);top:0}
+.dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1;border-bottom-color:var(--indextable-hover-bg,#a2a9b1)}
+.dfn-panel *{margin:0}
+.dfn-panel b{display:block;color:#000;color:var(--text,#000);margin-top:.25em}
+.dfn-panel ul a[href]{color:#333;color:var(--text,#333)}
+.dfn-panel>div{display:flex}
+.dfn-panel a.self-link{font-weight:700;margin-right:auto}
+.dfn-panel .marker{padding:.1em;margin-left:.5em;border-radius:.2em;text-align:center;white-space:nowrap;font-size:90%;color:#040b1c}
+.dfn-panel .marker.dfn-exported{background:#d1edfd;box-shadow:0 0 0 .125em #1ca5f940}
+.dfn-panel .marker.idl-block{background:#8ccbf2;box-shadow:0 0 0 .125em #0670b161}
+.dfn-panel a:not(:hover){text-decoration:none!important;border-bottom:none!important}
+.dfn-panel a[href]:hover{border-bottom-width:1px}
+.dfn-panel ul{padding:0}
+.dfn-panel li{margin-left:1em}
+.dfn-panel.docked{position:fixed;left:.5em;top:unset;bottom:2em;margin:0 auto;max-width:calc(100vw - .75em * 2 - .5em - .2em * 2);max-height:30vh;overflow:auto}
+</style>
+    
+
+    
+  
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+<style>
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Source+Code+Pro);
+:root{--fgclr1:rgba(0, 0, 0, 1);--fgclr2:rgba(0, 90, 156, 1);--fgclr3:rgba(70, 130, 180, 1);--fgclr4:rgba(40, 100, 150, 1);--gray:rgba(200, 200, 200, 0.9);--lightgray:rgba(240, 240, 240, 1);--lightestgray:rgba(250, 250, 250, 0.8);--darkgray:rgba(180, 180, 180, 1)}
+body{font-family:Roboto,Arial,Helvetica,sans-serif}
+code,pre,samp{font-family:'Source Code Pro',monospace}
+header{border-bottom:2px solid var(--gray);padding-bottom:2em}
+.header-top{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-flow:row nowrap;flex-flow:row nowrap;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}
+a#ims-logo,a#logo{text-decoration:none;border:0}
+h1.title{font-size:200%}
+div.subtitle{font-size:150%;color:var(--fgclr2)}
+#cpr{margin-bottom:1.5em;margin-top:2.5em}
+#cpr p{margin-top:0;margin-bottom:0}
+.statusPD{position:fixed;display:block;top:0;left:0;width:300px;height:30px;text-align:right;padding-top:2px;padding-right:2em;background-color:red;color:#fff;font-size:20px;transform-origin:left top;transform:rotate(-90deg) translate(-100%,0);-ms-transform-origin:left top;-ms-transform:rotate(90deg);-webkit-transform-origin:left top;-webkit-transform:rotate(-90deg) translate(-100%,0);-moz-transform-origin:left top;-moz-transform:rotate(-90deg) translate(-100%,0);-o-transform-origin:left top;-o-transform:rotate(-90deg) translate(-100%,0);z-index:12000}
+.statusPD.final{background-color:#00f}
+dt,h1,h2,h3,h4,h5,h6{page-break-after:avoid;page-break-inside:avoid;font:100% sans-serif;font-family:inherit;line-height:1.2;-webkit-hyphens:manual;-ms-hyphens:manual;hyphens:manual}
+h2,h3,h4,h5,h6{margin-top:3rem}
+h1,h2,h3,h4{color:var(--fgclr4);background:0 0}
+h1{font-size:170%}
+h2{font-size:140%}
+h3{font-size:120%}
+h4{font-weight:700}
+h5{font-style:italic}
+h6{font-variant:small-caps}
+dt{font-weight:700}
+a[href].internalDFN{color:var(--fgclr1);text-decoration:none;border-bottom:1px var(--fgclr2) dotted}
+a[href]:focus,a[href]:hover{background:var(--lightgray)}
+a[href]:active{color:#c00;border-color:#c00}
+.example{border:1px solid var(--darkgray);counter-increment:example}
+.example figcaption{background-color:var(--fgclr3);color:#fff}
+section#revisionhistory table{margin-bottom:3em}
+div#endWarranty p{margin-top:.3em;margin-bottom:.3em}
+div#endWarranty{margin-top:6em;padding-top:3em;border-top:2px solid var(--gray);text-align:center}
+table{border-collapse:collapse;word-wrap:normal;overflow-wrap:normal;-webkit-hyphens:manual;-ms-hyphens:manual;hyphens:manual;width:100%;margin-top:1.5em;margin-bottom:1.5em;max-width:50em;border:1px solid var(--gray)}
+td,th{padding-left:1em;padding-right:1em;padding-left:1em;padding-right:1em;text-align:left;text-align:start;vertical-align:top;border:1px solid var(--gray)}
+th{font-weight:700;background-color:var(--fgclr3);color:var(--lightgray);padding:.6em}
+td{padding:.8em}
+th>*{padding:0;margin:0}
+table#no-cell-borders,table#version-table{border:1px solid var(--gray)}
+table#no-cell-borders td,table#version-table td{border:none}
+table#version-table td{padding:.2em}
+td code,td.pre{white-space:pre;overflow:scroll}
+table.index{font-size:small;border-collapse:collapse;border-spacing:0;text-align:left;margin:1em 0}
+table.index td,table.index th{padding:.4em}
+table.index tr:hover td:not([rowspan]),table.index tr:hover th:not([rowspan]){background:#f7f8f9}
+table.index th:first-child a{font-weight:700}
+.alert{border:2px solid red;padding:.3em}
+dt>dfn{font-weight:700}
+a[href].hidden-reveal::before{content:"›";text-decoration:none}
+:is(h2,h3,h4,h5,h6)+a.self-link::before{content:"›"}
+a.self-link{text-decoration:none}
+a[href].hidden-reveal,a[href].hidden-reveal:visited,a[href].self-link:hover,a[href].self-link:visited{opacity:1;text-decoration:none}
+.admonition{margin-top:1em;margin-bottom:1em;margin:1em 0;border-left-width:.5em;border-left-style:solid;padding:.5em 1.2em .5em;position:relative;clear:both}
+.admonition .admon-top{padding-right:1em;min-width:7.5em;color:#e05252;text-transform:uppercase}
+.admonition .ednote-title,.admonition .note-title{color:#2b2}
+.admonition .ednote-title,.admonition .warning-title{color:#f22}
+.admonition.issue{border-color:#e05252;background:#fbe9e9;counter-increment:issue;overflow:auto}
+.admonition.ednote,.admonition.note{border-color:#52e052;background:#e9fbe9}
+.admonition>p:first-child{margin-top:0}
+.admonition.warning{border-color:#f11;border-width:.2em;border-style:solid;background:#fbe9e9;padding-top:1em}
+.admonition .warning-title:before{content:"⚠";font-size:3em;float:left;height:100%;padding-right:.3em;vertical-align:top;margin-top:-.5em}
+body{-webkit-hyphens:auto;-ms-hyphens:auto;hyphens:auto;color:var(--fgclr1)}
+.figure,.sidefigure,figure{text-align:left}
+.figure img,.figure pre,.sidefigure img,.sidefigure pre,figure img,figure pre{display:unset}
+.caption,caption,figcaption{display:block;padding:.5em 0 .5em .5em}
+</style>
+<meta name="description" content="This document serves as an unofficial registry for all known
+        Open Badges extensions.">
+<link rel="canonical" href="https://www.imsglobal.org/spec/ob/v2p0/doc/">
+<style>
+var{position:relative;cursor:pointer}
+var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
+var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#222}
+var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#222;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
+var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
+</style>
+<script id="initialUserConfig" type="application/json">{
+  "mainSpecTitle": "Open Badges Extension Registry",
+  "mainSpecBiblioKey": "OB-EXT-REGISTRY",
+  "specTitle": "Open Badges Specification",
+  "shortName": "ob",
+  "specNature": "informative",
+  "specType": "doc",
+  "specVersion": "2.0",
+  "docVersion": "1.0",
+  "specStatus": "Final Release",
+  "specDate": "Jan 22, 2025",
+  "postProcess": [
+    null
+  ]
+}</script></head>
+  <body class="informative toc-inline"><header>
+    <div class="header-top">
+      <h1 class="title" id="title">Open Badges Specification</h1>
+      <a href="https://www.1edtech.org" id="1edtech-logo" style="margin-left:27px">
+        <img src="https://purl.imsglobal.org/respec/1edtech_logo_color_with_tagline.svg" width="300" height="105" alt="1EdTech logo">
+      </a>
+    </div>
+     
+    <table id="version-table" title="Version/Release Details">
+      <tbody>
+        <tr>
+          <td>Date Issued:</td>
+          <td>Jan 22, 2025</td>
+        </tr>
+        <tr>
+          <td>Status:</td>
+          <td>This is an informative 1EdTech document that may be revised at any time.</td>
+        </tr>
+      </tbody>
+    </table> <div id="ipr">
+      <h2>IPR and Distribution Notice</h2>
+      <p>
+        Recipients of this document are requested to submit, with their
+        comments, notification of any relevant patent claims or other
+        intellectual property rights of which they may be aware that might be
+        infringed by any implementation of the specification set forth in this
+        document, and to provide supporting documentation.
+      </p>
+      <p>
+        1EdTech takes no position regarding the validity or scope of any
+        intellectual property or other rights that might be claimed to pertain
+        implementation or use of the technology described in this document or
+        the extent to which any license under such rights might or might not be
+        available; neither does it represent that it has made any effort to
+        identify any such rights. Information on 1EdTech's procedures with respect
+        to rights in 1EdTech specifications can be found at the 1EdTech Intellectual
+        Property Rights webpage:
+        <a href="http://www.imsglobal.org/ipr/imsipr_policyFinal.pdf">
+          http://www.imsglobal.org/ipr/imsipr_policyFinal.pdf </a>.
+      </p>
+    </div> <div id="disclosure">
+      <p>
+        Use of this specification to develop products or services is governed by
+        the license with 1EdTech found on the 1EdTech website:
+        <a href="http://www.imsglobal.org/speclicense.html">
+          http://www.imsglobal.org/speclicense.html</a>.
+      </p>
+      <p>
+        Permission is granted to all parties to use excerpts from this document
+        as needed in producing requests for proposals.
+      </p>
+      <p>
+        The limited permissions granted above are perpetual and will not be
+        revoked by 1EdTech or its successors or assigns.
+      </p>
+      <p>
+        THIS SPECIFICATION IS BEING OFFERED WITHOUT ANY WARRANTY WHATSOEVER, AND
+        IN PARTICULAR, ANY WARRANTY OF NONINFRINGEMENT IS EXPRESSLY DISCLAIMED.
+        ANY USE OF THIS SPECIFICATION <em class="rfc2119">SHALL</em> BE MADE ENTIRELY AT THE
+        IMPLEMENTER'S OWN RISK, AND NEITHER THE CONSORTIUM, NOR ANY OF ITS
+        MEMBERS OR SUBMITTERS, <em class="rfc2119">SHALL</em> HAVE ANY LIABILITY WHATSOEVER TO ANY
+        IMPLEMENTER OR THIRD PARTY FOR ANY DAMAGES OF ANY NATURE WHATSOEVER,
+        DIRECTLY OR INDIRECTLY, ARISING FROM THE USE OF THIS SPECIFICATION.
+      </p>
+      <p>
+        Public contributions, comments and questions can be posted here:
+        <a href="http://www.imsglobal.org/forums/ims-glc-public-forums-and-resources">
+          http://www.imsglobal.org/forums/ims-glc-public-forums-and-resources
+        </a>.
+      </p>
+    </div>
+    <div id="cpr">
+    <p>
+      © 2025 1EdTech™ Consortium, Inc. All Rights Reserved.
+    </p>
+    <p>
+      Trademark information:
+      <a href="http://www.imsglobal.org/copyright.html">http://www.imsglobal.org/copyright.html
+      </a>
+    </p>
+  </div>
+  </header>
+    <section id="abstract" class="introductory"><h2>Abstract</h2>
+      <p>
+        This document serves as an unofficial registry for all known
+        Open Badges extensions.
+      </p>
+    </section>
+
+    <section id="sotd">
+      <p>
+        Comments regarding this document are welcome. Please file issues
+        directly on
+        <a href="https://github.com/1edtech/openbadges-extension-registry/issues/">GitHub</a>.
+      </p>
+    </section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>Introduction</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#adding-a-specification-entry"><bdi class="secno">1.1 </bdi>Adding a Specification Entry</a></li></ol></li><li class="tocline"><a class="tocxref" href="#open-badges-3-0-extensions"><bdi class="secno">2. </bdi>Open Badges 3.0 Extensions</a></li><li class="tocline"><a class="tocxref" href="#open-badges-2-0-extensions"><bdi class="secno">3. </bdi>Open Badges 2.0 Extensions</a></li></ol></nav>
+
+    <section class="informative" id="introduction"><div class="header-wrapper"><h2 id="x1-introduction"><bdi class="secno">1. </bdi>Introduction</h2><a class="self-link" href="#introduction" aria-label="Permalink for Section 1."></a></div><p><em>This section is non-normative.</em></p>
+      
+
+      <p>
+        This document serves as an unofficial registry for all known
+        Open Badges extensions.
+      </p>
+
+      <section id="adding-a-specification-entry"><div class="header-wrapper"><h3 id="x1-1-adding-a-specification-entry"><bdi class="secno">1.1 </bdi>Adding a Specification Entry</h3><a class="self-link" href="#adding-a-specification-entry" aria-label="Permalink for Section 1.1"></a></div>
+        
+        <p>
+            Please follow instructions at <a href="https://github.com/1EdTech/openbadges-extension-registry">GitHub</a>
+        </p>
+      </section>
+
+    </section>
+
+    <section id="open-badges-3-0-extensions"><div class="header-wrapper"><h2 id="x2-open-badges-3-0-extensions"><bdi class="secno">2. </bdi>Open Badges 3.0 Extensions</h2><a class="self-link" href="#open-badges-3-0-extensions" aria-label="Permalink for Section 2."></a></div>
+      
+
+      <section class="respec-offending-element" title="All sections must start with a `h2-6` element." id="respec-offender-all-sections-must-start-with-a-h2-6-element">
+        <table class="simple">
+          <thead>
+            <tr><th>Extension</th>
+            <th>Description</th>
+          </tr></thead>
+          <tbody id="extensions-obv3p0-table"></tbody>
+        </table>
+      </section>
+    </section>
+    <section id="open-badges-2-0-extensions"><div class="header-wrapper"><h2 id="x3-open-badges-2-0-extensions"><bdi class="secno">3. </bdi>Open Badges 2.0 Extensions</h2><a class="self-link" href="#open-badges-2-0-extensions" aria-label="Permalink for Section 3."></a></div>
+      
+
+      <section class="respec-offending-element" title="All sections must start with a `h2-6` element." id="respec-offender-all-sections-must-start-with-a-h2-6-element-0">
+        <table class="simple">
+          <thead>
+            <tr><th>Extension</th>
+            <th>Description</th>
+          </tr></thead>
+          <tbody id="extensions-obv2p0-table"></tbody>
+        </table>
+      </section>
+    </section>
+  
+
+<p role="navigation" id="back-to-top">
+    <a href="#title"><abbr title="Back to Top">↑</abbr></a>
+  </p><script id="respec-dfn-panel">(() => {
+// @ts-check
+if (document.respec) {
+  document.respec.ready.then(setupPanel);
+} else {
+  setupPanel();
+}
+
+function setupPanel() {
+  const listener = panelListener();
+  document.body.addEventListener("keydown", listener);
+  document.body.addEventListener("click", listener);
+}
+
+function panelListener() {
+  /** @type {HTMLElement} */
+  let panel = null;
+  return event => {
+    const { target, type } = event;
+
+    if (!(target instanceof HTMLElement)) return;
+
+    // For keys, we only care about Enter key to activate the panel
+    // otherwise it's activated via a click.
+    if (type === "keydown" && event.key !== "Enter") return;
+
+    const action = deriveAction(event);
+
+    switch (action) {
+      case "show": {
+        hidePanel(panel);
+        /** @type {HTMLElement} */
+        const dfn = target.closest("dfn, .index-term");
+        panel = document.getElementById(`dfn-panel-for-${dfn.id}`);
+        const coords = deriveCoordinates(event);
+        displayPanel(dfn, panel, coords);
+        break;
+      }
+      case "dock": {
+        panel.style.left = null;
+        panel.style.top = null;
+        panel.classList.add("docked");
+        break;
+      }
+      case "hide": {
+        hidePanel(panel);
+        panel = null;
+        break;
+      }
+    }
+  };
+}
+
+/**
+ * @param {MouseEvent|KeyboardEvent} event
+ */
+function deriveCoordinates(event) {
+  const target = /** @type HTMLElement */ (event.target);
+
+  // We prevent synthetic AT clicks from putting
+  // the dialog in a weird place. The AT events sometimes
+  // lack coordinates, so they have clientX/Y = 0
+  const rect = target.getBoundingClientRect();
+  if (
+    event instanceof MouseEvent &&
+    event.clientX >= rect.left &&
+    event.clientY >= rect.top
+  ) {
+    // The event probably happened inside the bounding rect...
+    return { x: event.clientX, y: event.clientY };
+  }
+
+  // Offset to the middle of the element
+  const x = rect.x + rect.width / 2;
+  // Placed at the bottom of the element
+  const y = rect.y + rect.height;
+  return { x, y };
+}
+
+/**
+ * @param {Event} event
+ */
+function deriveAction(event) {
+  const target = /** @type {HTMLElement} */ (event.target);
+  const hitALink = !!target.closest("a");
+  if (target.closest("dfn:not([data-cite]), .index-term")) {
+    return hitALink ? "none" : "show";
+  }
+  if (target.closest(".dfn-panel")) {
+    if (hitALink) {
+      return target.classList.contains("self-link") ? "hide" : "dock";
+    }
+    const panel = target.closest(".dfn-panel");
+    return panel.classList.contains("docked") ? "hide" : "none";
+  }
+  if (document.querySelector(".dfn-panel:not([hidden])")) {
+    return "hide";
+  }
+  return "none";
+}
+
+/**
+ * @param {HTMLElement} dfn
+ * @param {HTMLElement} panel
+ * @param {{ x: number, y: number }} clickPosition
+ */
+function displayPanel(dfn, panel, { x, y }) {
+  panel.hidden = false;
+  // distance (px) between edge of panel and the pointing triangle (caret)
+  const MARGIN = 20;
+
+  const dfnRects = dfn.getClientRects();
+  // Find the `top` offset when the `dfn` can be spread across multiple lines
+  let closestTop = 0;
+  let minDiff = Infinity;
+  for (const rect of dfnRects) {
+    const { top, bottom } = rect;
+    const diffFromClickY = Math.abs((top + bottom) / 2 - y);
+    if (diffFromClickY < minDiff) {
+      minDiff = diffFromClickY;
+      closestTop = top;
+    }
+  }
+
+  const top = window.scrollY + closestTop + dfnRects[0].height;
+  const left = x - MARGIN;
+  panel.style.left = `${left}px`;
+  panel.style.top = `${top}px`;
+
+  // Find if the panel is flowing out of the window
+  const panelRect = panel.getBoundingClientRect();
+  const SCREEN_WIDTH = Math.min(window.innerWidth, window.screen.width);
+  if (panelRect.right > SCREEN_WIDTH) {
+    const newLeft = Math.max(MARGIN, x + MARGIN - panelRect.width);
+    const newCaretOffset = left - newLeft;
+    panel.style.left = `${newLeft}px`;
+    /** @type {HTMLElement} */
+    const caret = panel.querySelector(".caret");
+    caret.style.left = `${newCaretOffset}px`;
+  }
+
+  // As it's a dialog, we trap focus.
+  // TODO: when <dialog> becomes a implemented, we should really
+  // use that.
+  trapFocus(panel, dfn);
+}
+
+/**
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function trapFocus(panel, dfn) {
+  /** @type NodeListOf<HTMLAnchorElement> elements */
+  const anchors = panel.querySelectorAll("a[href]");
+  // No need to trap focus
+  if (!anchors.length) return;
+
+  // Move focus to first anchor element
+  const first = anchors.item(0);
+  first.focus();
+
+  const trapListener = createTrapListener(anchors, panel, dfn);
+  panel.addEventListener("keydown", trapListener);
+
+  // Hiding the panel releases the trap
+  const mo = new MutationObserver(records => {
+    const [record] = records;
+    const target = /** @type HTMLElement */ (record.target);
+    if (target.hidden) {
+      panel.removeEventListener("keydown", trapListener);
+      mo.disconnect();
+    }
+  });
+  mo.observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+}
+
+/**
+ *
+ * @param {NodeListOf<HTMLAnchorElement>} anchors
+ * @param {HTMLElement} panel
+ * @param {HTMLElement} dfn
+ * @returns
+ */
+function createTrapListener(anchors, panel, dfn) {
+  const lastIndex = anchors.length - 1;
+  let currentIndex = 0;
+  return event => {
+    switch (event.key) {
+      // Hitting "Tab" traps us in a nice loop around elements.
+      case "Tab": {
+        event.preventDefault();
+        currentIndex += event.shiftKey ? -1 : +1;
+        if (currentIndex < 0) {
+          currentIndex = lastIndex;
+        } else if (currentIndex > lastIndex) {
+          currentIndex = 0;
+        }
+        anchors.item(currentIndex).focus();
+        break;
+      }
+
+      // Hitting "Enter" on an anchor releases the trap.
+      case "Enter":
+        hidePanel(panel);
+        break;
+
+      // Hitting "Escape" returns focus to dfn.
+      case "Escape":
+        hidePanel(panel);
+        dfn.focus();
+        return;
+    }
+  };
+}
+
+/** @param {HTMLElement} panel */
+function hidePanel(panel) {
+  if (!panel) return;
+  panel.hidden = true;
+  panel.classList.remove("docked");
+}
+})()</script><script src="https://purl.imsglobal.org/spec/fixup.js"></script><footer>
+    <div id="endWarranty">
+      <p>
+        1EdTech™ Consortium, Inc. ("1EdTech") is publishing the
+        information contained in this document ("Specification") for purposes of
+        scientific, experimental, and scholarly collaboration only.
+      </p>
+      <p>
+        1EdTech makes no warranty or representation regarding the accuracy or
+        completeness of the Specification.
+      </p>
+      <p>This material is provided on an "As Is" and "As Available" basis.</p>
+      <p>
+        The Specification is at all times subject to change and revision without
+        notice.
+      </p>
+      <p>
+        It is your sole responsibility to evaluate the usefulness, accuracy, and
+        completeness of the Specification as it relates to you.
+      </p>
+      <p>1EdTech would appreciate receiving your comments and suggestions.</p>
+      <p>
+        Please contact 1EdTech through our website at
+        <a href="https://www.1edtech.org">www.1edtech.org</a>.
+      </p>
+      <p>
+        Please refer to Document Name: Open Badges Specification
+        2.0
+      </p>
+      <p>Date: Jan 22, 2025</p>
+      <div></div>
+    </div>
+  </footer></body></html>
