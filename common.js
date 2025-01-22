@@ -11,6 +11,11 @@ async function buildExtensionTable(path, tableId) {
     throw new Error(`Failed retrieve extensions ${path} file`);
   }
   const extensions = await response.json();
+  // transform to array if it's a single object
+  if (!Array.isArray(extensions)) {
+    extensions = [extensions];
+  }
+
   // summarize each extension
   for (const extension of extensions) {
     const tableRow = document.createElement("tr");
