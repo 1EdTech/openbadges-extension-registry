@@ -24,20 +24,14 @@ jobs:
         url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
-        uses: actions/checkout/@v3
+        uses: actions/checkout/@v4
       - name: Create extension index for OB 2.0
         run: |
             jq -s 'reduce .[] as $item ({}; . * $item)' $(find ./v2 -type f -name "*.json") > build/obv2p0.json
       - name: Create extension index for OB 3.0
         run: |
             jq -s 'reduce .[] as $item ({}; . * $item)' $(find ./v3 -type f -name "*.json") > build/obv3p0.json
-      - name: Setup Github Pages
-        uses: actions/configure-pages@v2
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Publish to GH Pages
+        uses: w3c/spec-prod@v2
         with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+            GH_PAGES_BRANCH: gh-pages
