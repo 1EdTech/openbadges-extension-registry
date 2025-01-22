@@ -17,7 +17,7 @@ async function buildExtensionTable(path, tableId) {
   }
 
   // summarize each extension
-  for (const extension of extensions) {
+  for (const ext of extensions) {
     const tableRow = document.createElement("tr");
     const {
       name,
@@ -26,7 +26,7 @@ async function buildExtensionTable(path, tableId) {
       maintainerEmail,
       maintainerName,
       maintainerWebsite,
-    } = extension;
+    } = ext;
     let maintainerInfo = maintainerName;
     if (maintainerEmail) {
       maintainerInfo += ` (<a href="mailto:${maintainerEmail}">email</a>)`;
