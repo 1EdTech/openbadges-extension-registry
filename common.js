@@ -10,7 +10,7 @@ async function buildExtensionTable(path, tableId) {
   if (response.status !== 200) {
     throw new Error(`Failed retrieve extensions ${path} file`);
   }
-  const extensions = await response.json();
+  let extensions = await response.json();
   // transform to array if it's a single object
   if (!Array.isArray(extensions)) {
     extensions = [extensions];
