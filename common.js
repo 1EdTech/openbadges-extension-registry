@@ -1,7 +1,7 @@
 /* Build extensions tables using JSON data */
 async function buildExtensionTables(config) {
-  buildExtensionTable("build/obv3.json", "extensions-obv3p0-table");
-  buildExtensionTable("build/obv2.json", "extensions-obv2p0-table");
+  buildExtensionTable("build/obv3p0.json", "extensions-obv3p0-table");
+  buildExtensionTable("build/obv2p0.json", "extensions-obv2p0-table");
 }
 
 async function buildExtensionTable(path, tableId) {
