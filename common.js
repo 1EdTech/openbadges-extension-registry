@@ -1,0 +1,41 @@
+/* Build extensions tables using JSON data */
+async function buildExtensionTables(config) {
+  buildExtensionTable("build/obv3.json", "extensions-obv3p0-table");
+  buildExtensionTable("build/obv2.json", "extensions-obv2p0-table");
+}
+
+async function buildExtensionTable(path, tableId) {
+  const { document } = window;
+  const response = await fetch(path);
+  if (response.status !== 200) {
+    throw new Error(`Failed retrieve extensions ${path} file`);
+  }
+  const extensions = await response.json();
+  // summarize each extension
+  for (const extension of extensions) {
+    const tableRow = document.createElement("tr");
+    const {
+      name,
+      summary,
+      extension,
+      maintainerEmail,
+      maintainerName,
+      maintainerWebsite,
+    } = extension;
+    let maintainerInfo = maintainerName;
+    if (maintainerEmail) {
+      maintainerInfo += ` (<a href="mailto:${maintainerEmail}">email</a>)`;
+    }
+    if (maintainerWebsite) {
+      maintainerInfo += ` (<a href="${maintainerWebsite}">website</a>)`;
+    }
+    tableRow.innerHTML =
+      `<td style="vertical-align:top;"><a href="${extension}">${name}</a></td>` +
+      `<td>${summary}<br/>Maintainer: ${maintainerInfo}</td>`;
+
+    const tableBody = document.getElementById(tableId);
+    tableBody.appendChild(tableRow);
+  }
+}
+
+window.buildExtensionTables = buildExtensionTables;
