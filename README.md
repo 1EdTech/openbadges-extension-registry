@@ -1,5 +1,9 @@
 # Registry of Open Badges extensions
 
+Repository for building the
+[Open Badges Extension Registry](https://1edtech.github.io/openbadges-extension-registry/)
+page.
+
 ## Adding your extension
 
 1. Fork this repository.
