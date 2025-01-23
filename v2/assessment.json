@@ -1,5 +1,5 @@
 {
-  "name": "Open Badges Assessment Extension",
+  "name": "Open Badges Assessment Extension v1p0",
   "summary": "An extension to Open Badges that allows issuers to define assessment(s) related to the award process.",
   "extension": "https://www.imsglobal.org/spec/ob-assessment/v1p0/",
   "maintainerName": "1EdTech Consortium",
