@@ -1,0 +1,7 @@
+{
+  "name": "Open Badges American Council for Education (ACE) Extension",
+  "summary": "An extension to Open Badges that allows inserting American Council for Education credit recommendations and learning evaluation data.",
+  "extension": "https://www.imsglobal.org/spec/ob-ace/v1p0",
+  "maintainerName": "1EdTech Consortium",
+  "maintainerWebsite": "https://www.1edtech.org/"
+}
